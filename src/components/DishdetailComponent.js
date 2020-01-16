@@ -28,9 +28,9 @@ class DishDetail extends Component {
     }
 
     convertDate(date) {
-        const oldDate = new Date(date);
-        const newDate = oldDate.toString().split(" ");
-        const finalDate = newDate[1] + " " + (parseInt(newDate[2]) + 1)  + ", " + newDate[3];
+        const oldDate = new Date(Date.parse(date));
+        const newDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'})
+        const finalDate = newDate.format(oldDate);
         return finalDate;
     }
 
@@ -61,12 +61,14 @@ class DishDetail extends Component {
     render(){
         const comments = this.getComments(this.props.selectedDish);
         return(
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    { this.renderDish(this.props.selectedDish) }
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    { this.renderComments(comments) }
+            <div className="container" >
+                <div className="row">
+                    <div className="col-12 col-md-5 mt-1 mb-1">
+                        { this.renderDish(this.props.selectedDish) }
+                    </div>
+                    <div className="col-12 col-md-5 mt-1 mb-1">
+                        { this.renderComments(comments) }
+                    </div>
                 </div>
             </div>
         )
