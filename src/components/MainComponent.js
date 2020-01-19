@@ -3,6 +3,7 @@ import { DISHES } from '../shared/dishes';
 import Menu from '../components/MenuComponent';
 import DishDetail from '../components/DishdetailComponent';
 import Header from '../components/HeaderComponent';
+import Footer from '../components/FooterComponent';
 
 class Main extends Component {
 
@@ -26,6 +27,7 @@ class Main extends Component {
                 <Header />
                 <Menu dishes={this.state.dishes} onClick={ (dishId) => this.onDishSelect(   ) } />
                 <DishDetail selectedDish={this.state.dishes.filter( (dish) => dish.id === this.state.selectedDish)[0]} />
+                <Footer />
             </div>
         )
     }
