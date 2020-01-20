@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 const About = (props) => {
 
+    const RenderLeader = ({details}) => {
+        
+    }
+
     const leaders = props.leaders.map((leader) => {
         return (
             <p>Leader {leader.name}</p>
