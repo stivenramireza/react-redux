@@ -1,11 +1,6 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
-
-    function getComments(dish) {
-        if(dish != null) {
-            return dish.comments;
-        }
-    }
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
     function convertDate(date) {
         const oldDate = new Date(Date.parse(date));
@@ -57,15 +52,25 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
     }
     
     const DishDetail = (props) => {
-        const comments = getComments(props.selectedDish);
         return(
             <div className="container" >
+                <div className="row">
+                    <Breadcrumb>
+
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.selectedDish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.selectedDish.name}</h3>
+                        <hr />
+                    </div>                
+                </div>
                 <div className="row">
                     <div className="col-12 col-md-5 mt-1 mb-1">
                         <RenderDish dish={props.selectedDish} />
                     </div>
                     <div className="col-12 col-md-5 mt-1 mb-1">
-                        <RenderComments comments={comments} />
+                        <RenderComments comments={props.comments} />
                     </div>
                 </div>
             </div>
